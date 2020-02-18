@@ -1,32 +1,25 @@
-const key = "ASAMPtq0bAsBGlUP9KEU6Y30LgazxvBQ";
+const cityForm = document.querySelector("form");
 
-//get weather information
-const getWeather = async id => {
-  const base = "http://dataservice.accuweather.com/currentconditions/v1/";
-  const query = `${id}?apikey=${key}`;
+const updateCity = async city => {
+  // console.log(city);
 
-  const response = await fetch(base + query);
-  const data = await response.json();
+  const cityDets = await getCity(city);
+  const weather = await getWeather(cityDets.Key);
 
-  return data[0];
+  return {
+    cityDets: cityDets,
+    wether: weather
+  };
 };
 
-//get city information
-const getCity = async city => {
-  const base = "http://dataservice.accuweather.com/locations/v1/cities/search";
-  const query = `?apikey=${key}&q=${city}`;
+cityForm.addEventListener("submit", e => {
+  e.preventDefault(); //prevent default form action(clearing)
 
-  const response = await fetch(base + query);
-  const data = await response.json();
+  const city = cityForm.city.value.trim();
+  cityForm.reset(); // clears form field
 
-  return data[0];
-};
-
-getCity("manchester")
-  .then(data => {
-    return getWeather(data.Key);
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(err => console.log(err));
+  //update the ui with new city
+  updateCity(city)
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+});
