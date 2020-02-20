@@ -13,4 +13,4 @@ Road Ahead: take core concepts and create weather app with
 - bulma
 - create-react-app for final
 
-stay tuned...
+stay tuned!
