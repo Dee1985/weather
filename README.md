@@ -1,5 +1,7 @@
 # weather
 
+live: https://dee1985.github.io/weather/
+
 Udemy course tutorial- Async JS with Ajax. Create a weather app using AccuWeather API.
 
 Instructor Shaun Pelling (Modern JS- from novice to Ninja)
